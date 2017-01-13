@@ -16,7 +16,7 @@ include ../py/py.mk
 
 FWBIN = $(BUILD)/firmware-combined.bin
 PORT ?= /dev/ttyACM0
-BAUD ?= 115200
+BAUD ?= 460800
 FLASH_MODE ?= qio
 FLASH_SIZE ?= detect
 CROSS_COMPILE = xtensa-lx106-elf-
