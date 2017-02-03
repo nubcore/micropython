@@ -1,3 +1,10 @@
+master == last known good from upstream
+
+눕 == bleeding edge
+
+剃 == last known good bleeder
+
+
 [![Build Status][travis-img]][travis-repo] [![Coverage Status][coveralls-img]][coveralls-repo]
 [travis-img]:  https://travis-ci.org/micropython/micropython.png?branch=master
 [travis-repo]: https://travis-ci.org/micropython/micropython
