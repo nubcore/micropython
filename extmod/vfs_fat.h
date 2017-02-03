@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Damien P. George
+ * Copyright (c) 2013, 2014 Damien P. George
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,17 +24,15 @@
  * THE SOFTWARE.
  */
 
+#include "py/lexer.h"
+#include "py/obj.h"
+#include "lib/oofatfs/ff.h"
+#include "extmod/vfs.h"
+
 // these are the values for fs_user_mount_t.flags
 #define FSUSER_NATIVE       (0x0001) // readblocks[2]/writeblocks[2] contain native func
 #define FSUSER_FREE_OBJ     (0x0002) // fs_user_mount_t obj should be freed on umount
 #define FSUSER_HAVE_IOCTL   (0x0004) // new protocol with ioctl
-
-// constants for block protocol ioctl
-#define BP_IOCTL_INIT           (1)
-#define BP_IOCTL_DEINIT         (2)
-#define BP_IOCTL_SYNC           (3)
-#define BP_IOCTL_SEC_COUNT      (4)
-#define BP_IOCTL_SEC_SIZE       (5)
 
 typedef struct _fs_user_mount_t {
     mp_obj_base_t base;
@@ -54,9 +52,11 @@ typedef struct _fs_user_mount_t {
     FATFS fatfs;
 } fs_user_mount_t;
 
-fs_user_mount_t *fatfs_mount_mkfs(mp_uint_t n_args, const mp_obj_t *pos_args, mp_map_t *kw_args, bool mkfs);
-mp_obj_t fatfs_umount(mp_obj_t bdev_or_path_in);
+extern const byte fresult_to_errno_table[20];
+extern const mp_obj_type_t mp_fat_vfs_type;
 
-MP_DECLARE_CONST_FUN_OBJ_KW(fsuser_mount_obj);
-MP_DECLARE_CONST_FUN_OBJ_1(fsuser_umount_obj);
-MP_DECLARE_CONST_FUN_OBJ_KW(fsuser_mkfs_obj);
+mp_import_stat_t fat_vfs_import_stat(struct _fs_user_mount_t *vfs, const char *path);
+mp_obj_t fatfs_builtin_open_self(mp_obj_t self_in, mp_obj_t path, mp_obj_t mode);
+MP_DECLARE_CONST_FUN_OBJ_KW(mp_builtin_open_obj);
+
+mp_obj_t fat_vfs_listdir2(struct _fs_user_mount_t *vfs, const char *path, bool is_str_type);

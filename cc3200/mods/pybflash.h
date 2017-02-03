@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2013, 2014 Damien P. George
+ * Copyright (c) 2017 Damien P. George
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+#ifndef MICROPY_INCLUDED_CC3200_MODS_PYBFLASH_H
+#define MICROPY_INCLUDED_CC3200_MODS_PYBFLASH_H
 
-#include "py/runtime.h"
-#include "extmod/vfs_fat_file.h"
+#include "py/obj.h"
 
-MP_DEFINE_CONST_FUN_OBJ_KW(mp_builtin_open_obj, 1, fatfs_builtin_open);
+extern const mp_obj_type_t pyb_flash_type;
+
+void pyb_flash_init_vfs(fs_user_mount_t *vfs);
+
+#endif // MICROPY_INCLUDED_CC3200_MODS_PYBFLASH_H
