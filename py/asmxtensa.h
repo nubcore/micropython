@@ -73,11 +73,11 @@
 
 // macros for encoding instructions (little endian versions)
 #define ASM_XTENSA_ENCODE_RRR(op0, op1, op2, r, s, t) \
-    (((op2) << 20) | ((op1) << 16) | ((r) << 12) | ((s) << 8) | ((t) << 4) | (op0))
+    ((((uint32_t)op2) << 20) | (((uint32_t)op1) << 16) | ((r) << 12) | ((s) << 8) | ((t) << 4) | (op0))
 #define ASM_XTENSA_ENCODE_RRI4(op0, op1, r, s, t, imm4) \
     (((imm4) << 20) | ((op1) << 16) | ((r) << 12) | ((s) << 8) | ((t) << 4) | (op0))
 #define ASM_XTENSA_ENCODE_RRI8(op0, r, s, t, imm8) \
-    (((imm8) << 16) | ((r) << 12) | ((s) << 8) | ((t) << 4) | (op0))
+    ((((uint32_t)imm8) << 16) | ((r) << 12) | ((s) << 8) | ((t) << 4) | (op0))
 #define ASM_XTENSA_ENCODE_RI16(op0, t, imm16) \
     (((imm16) << 8) | ((t) << 4) | (op0))
 #define ASM_XTENSA_ENCODE_RSR(op0, op1, op2, rs, t) \
@@ -85,7 +85,7 @@
 #define ASM_XTENSA_ENCODE_CALL(op0, n, offset) \
     (((offset) << 6) | ((n) << 4) | (op0))
 #define ASM_XTENSA_ENCODE_CALLX(op0, op1, op2, r, s, m, n) \
-    (((op2) << 20) | ((op1) << 16) | ((r) << 12) | ((s) << 8) | ((m) << 6) | ((n) << 4) | (op0))
+    ((((uint32_t)op2) << 20) | (((uint32_t)op1) << 16) | ((r) << 12) | ((s) << 8) | ((m) << 6) | ((n) << 4) | (op0))
 #define ASM_XTENSA_ENCODE_BRI8(op0, r, s, m, n, imm8) \
     (((imm8) << 16) | ((r) << 12) | ((s) << 8) | ((m) << 6) | ((n) << 4) | (op0))
 #define ASM_XTENSA_ENCODE_BRI12(op0, s, m, n, imm12) \
@@ -280,17 +280,12 @@ void asm_xtensa_mov_reg_local_addr(asm_xtensa_t *as, uint reg_dest, int local_nu
         asm_xtensa_op_callx0(as, ASM_XTENSA_REG_A0); \
     } while (0)
 
-#define ASM_MOV_REG_TO_LOCAL(as, reg, local_num) asm_xtensa_mov_local_reg(as, (local_num), (reg))
-#define ASM_MOV_IMM_TO_REG(as, imm, reg) asm_xtensa_mov_reg_i32(as, (reg), (imm))
-#define ASM_MOV_ALIGNED_IMM_TO_REG(as, imm, reg) asm_xtensa_mov_reg_i32(as, (reg), (imm))
-#define ASM_MOV_IMM_TO_LOCAL_USING(as, imm, local_num, reg_temp) \
-    do { \
-        asm_xtensa_mov_reg_i32(as, (reg_temp), (imm)); \
-        asm_xtensa_mov_local_reg(as, (local_num), (reg_temp)); \
-    } while (0)
-#define ASM_MOV_LOCAL_TO_REG(as, local_num, reg) asm_xtensa_mov_reg_local(as, (reg), (local_num))
+#define ASM_MOV_LOCAL_REG(as, local_num, reg_src) asm_xtensa_mov_local_reg((as), (local_num), (reg_src))
+#define ASM_MOV_REG_IMM(as, reg_dest, imm) asm_xtensa_mov_reg_i32((as), (reg_dest), (imm))
+#define ASM_MOV_REG_ALIGNED_IMM(as, reg_dest, imm) asm_xtensa_mov_reg_i32((as), (reg_dest), (imm))
+#define ASM_MOV_REG_LOCAL(as, reg_dest, local_num) asm_xtensa_mov_reg_local((as), (reg_dest), (local_num))
 #define ASM_MOV_REG_REG(as, reg_dest, reg_src) asm_xtensa_op_mov_n((as), (reg_dest), (reg_src))
-#define ASM_MOV_LOCAL_ADDR_TO_REG(as, local_num, reg) asm_xtensa_mov_reg_local_addr(as, (reg), (local_num))
+#define ASM_MOV_REG_LOCAL_ADDR(as, reg_dest, local_num) asm_xtensa_mov_reg_local_addr((as), (reg_dest), (local_num))
 
 #define ASM_LSL_REG_REG(as, reg_dest, reg_shift) \
     do { \

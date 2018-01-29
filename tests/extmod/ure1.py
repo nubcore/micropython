@@ -1,7 +1,11 @@
 try:
     import ure as re
 except ImportError:
-    import re
+    try:
+        import re
+    except ImportError:
+        print("SKIP")
+        raise SystemExit
 
 r = re.compile(".+")
 m = r.match("abc")
@@ -44,7 +48,12 @@ m = r.match("d")
 print(m.group(0))
 m = r.match("A")
 print(m.group(0))
+print("===")
 
+# '-' character within character class block
+print(re.match("[-a]+", "-a]d").group(0))
+print(re.match("[a-]+", "-a]d").group(0))
+print("===")
 
 r = re.compile("o+")
 m = r.search("foobar")
@@ -67,7 +76,15 @@ m = re.match('^ab$', 'ab'); print(m.group(0))
 m = re.match('a|b', 'b');   print(m.group(0))
 m = re.match('a|b|c', 'c'); print(m.group(0))
 
+# Case where anchors fail to match
+r = re.compile("^b|b$")
+m = r.search("abc")
+print(m)
+
 try:
     re.compile("*")
 except:
     print("Caught invalid regex")
+
+# bytes objects
+m = re.match(rb'a+?', b'ab');  print(m.group(0))

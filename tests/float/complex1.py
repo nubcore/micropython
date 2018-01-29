@@ -28,6 +28,7 @@ print(1j / 2)
 print((1j / 2j).real)
 print(1j / (1 + 2j))
 ans = 0j ** 0; print("%.5g %.5g" % (ans.real, ans.imag))
+ans = 0j ** 1; print("%.5g %.5g" % (ans.real, ans.imag))
 ans = 0j ** 0j; print("%.5g %.5g" % (ans.real, ans.imag))
 ans = 1j ** 2.5; print("%.5g %.5g" % (ans.real, ans.imag))
 ans = 1j ** 2.5j; print("%.5g %.5g" % (ans.real, ans.imag))
@@ -36,20 +37,31 @@ ans = 1j ** 2.5j; print("%.5g %.5g" % (ans.real, ans.imag))
 print(1j == 1)
 print(1j == 1j)
 
+# comparison of nan is special
+nan = float('nan') * 1j
+print(nan == 1j)
+print(nan == nan)
+
 # builtin abs
 print(abs(1j))
 print("%.5g" % abs(1j + 2))
 
+# builtin hash
+print(hash(1 + 0j))
+print(type(hash(1j)))
+
 # float on lhs should delegate to complex
 print(1.2 + 3j)
 
+# negative base and fractional power should create a complex
+ans = (-1) ** 2.3; print("%.5g %.5g" % (ans.real, ans.imag))
+ans = (-1.2) ** -3.4; print("%.5g %.5g" % (ans.real, ans.imag))
+
 # check printing of inf/nan
 print(float('nan') * 1j)
+print(float('-nan') * 1j)
 print(float('inf') * (1 + 1j))
 print(float('-inf') * (1 + 1j))
-
-# convert bignum to complex on rhs
-ans = 1j + (1 << 70); print("%.5g %.5g" % (ans.real, ans.imag))
 
 # can't assign to attributes
 try:
@@ -94,6 +106,10 @@ except ZeroDivisionError:
     print("ZeroDivisionError")
 
 # zero division via power
+try:
+    0j ** -1
+except ZeroDivisionError:
+    print("ZeroDivisionError")
 try:
     0j ** 1j
 except ZeroDivisionError:
