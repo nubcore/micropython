@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [![Build 
 Status](https://travis-ci.org/micropython/micropython.png?branch=master)](https://travis-ci.org/micropython/micropython) 
 [![Coverage 
@@ -6,6 +7,9 @@ Status](https://coveralls.io/repos/micropython/micropython/badge.png?branch=mast
 =======
 [![Build Status](https://travis-ci.org/micropython/micropython.png?branch=master)](https://travis-ci.org/micropython/micropython) [![Coverage Status](https://coveralls.io/repos/micropython/micropython/badge.png?branch=master)](https://coveralls.io/r/micropython/micropython?branch=master)
 >>>>>>> a275cb0f487cd6517760271dc01d369c32600c63
+=======
+[![Build Status](https://travis-ci.org/micropython/micropython.png?branch=master)](https://travis-ci.org/micropython/micropython) [![Coverage Status](https://coveralls.io/repos/micropython/micropython/badge.png?branch=master)](https://coveralls.io/r/micropython/micropython?branch=master)
+>>>>>>> upstream/master
 
 The MicroPython project
 =======================
@@ -27,6 +31,7 @@ MicroPython implements the entire Python 3.4 syntax (including exceptions,
 `with`, `yield from`, etc., and additionally `async`/`await` keywords from
 Python 3.5). The following core datatypes are provided: `str` (including
 <<<<<<< HEAD
+<<<<<<< HEAD
 basic Unicode support), `bytes`, `bytearray`, `tuple`, `list`, `dict`, 
 `set`,
 `frozenset`, `array.array`, `collections.namedtuple`, classes and 
@@ -35,11 +40,16 @@ instances.
 basic Unicode support), `bytes`, `bytearray`, `tuple`, `list`, `dict`, `set`,
 `frozenset`, `array.array`, `collections.namedtuple`, classes and instances.
 >>>>>>> a275cb0f487cd6517760271dc01d369c32600c63
+=======
+basic Unicode support), `bytes`, `bytearray`, `tuple`, `list`, `dict`, `set`,
+`frozenset`, `array.array`, `collections.namedtuple`, classes and instances.
+>>>>>>> upstream/master
 Builtin modules include `sys`, `time`, and `struct`, etc. Select ports have
 support for `_thread` module (multithreading). Note that only a subset of
 Python 3 functionality is implemented for the data types and modules.
 
 MicroPython can execute scripts in textual source form or from precompiled
+<<<<<<< HEAD
 <<<<<<< HEAD
 bytecode, in both cases either from an on-device filesystem or "frozen" 
 into
@@ -50,6 +60,8 @@ MicroPython
 board (PyBoard), the officially supported reference electronic circuit 
 board.
 =======
+=======
+>>>>>>> upstream/master
 bytecode, in both cases either from an on-device filesystem or "frozen" into
 the MicroPython executable.
 
@@ -61,6 +73,7 @@ Major components in this repository:
 - py/ -- the core Python implementation, including compiler, runtime, and
   core library.
 <<<<<<< HEAD
+<<<<<<< HEAD
 - mpy-cross/ -- the MicroPython cross-compiler which is used to turn 
 scripts
   into precompiled bytecode.
@@ -68,11 +81,16 @@ scripts
 - ports/stm32/ -- a version of MicroPython that runs on the PyBoard and 
 similar
 =======
+=======
+>>>>>>> upstream/master
 - mpy-cross/ -- the MicroPython cross-compiler which is used to turn scripts
   into precompiled bytecode.
 - ports/unix/ -- a version of MicroPython that runs on Unix.
 - ports/stm32/ -- a version of MicroPython that runs on the PyBoard and similar
+<<<<<<< HEAD
 >>>>>>> a275cb0f487cd6517760271dc01d369c32600c63
+=======
+>>>>>>> upstream/master
   STM32 boards (using ST's Cube HAL drivers).
 - ports/minimal/ -- a minimal MicroPython port. Start with this if you want
   to port MicroPython to another microcontroller.
@@ -82,6 +100,7 @@ similar
   to select needed board/port at the bottom left corner).
 
 Additional components:
+<<<<<<< HEAD
 <<<<<<< HEAD
 - ports/bare-arm/ -- a bare minimum version of MicroPython for ARM MCUs. 
 Used
@@ -100,6 +119,14 @@ TI.
 - ports/pic16bit/ -- a version of MicroPython for 16-bit PIC microcontrollers.
 - ports/cc3200/ -- a version of MicroPython that runs on the CC3200 from TI.
 >>>>>>> a275cb0f487cd6517760271dc01d369c32600c63
+=======
+- ports/bare-arm/ -- a bare minimum version of MicroPython for ARM MCUs. Used
+  mostly to control code size.
+- ports/teensy/ -- a version of MicroPython that runs on the Teensy 3.1
+  (preliminary but functional).
+- ports/pic16bit/ -- a version of MicroPython for 16-bit PIC microcontrollers.
+- ports/cc3200/ -- a version of MicroPython that runs on the CC3200 from TI.
+>>>>>>> upstream/master
 - ports/esp8266/ -- an experimental port for ESP8266 WiFi modules.
 - extmod/ -- additional (non-core) modules implemented in C.
 - tools/ -- various tools, including the pyboard.py module.
@@ -179,11 +206,15 @@ are used or not). If you intend to build MicroPython with additional
 options (like cross-compiling), the same set of options should be passed
 to `make deplibs`. To actually enable/disable use of dependencies, edit
 <<<<<<< HEAD
+<<<<<<< HEAD
 `ports/unix/mpconfigport.mk` file, which has inline descriptions of the 
 options.
 =======
 `ports/unix/mpconfigport.mk` file, which has inline descriptions of the options.
 >>>>>>> a275cb0f487cd6517760271dc01d369c32600c63
+=======
+`ports/unix/mpconfigport.mk` file, which has inline descriptions of the options.
+>>>>>>> upstream/master
 For example, to build SSL module (required for `upip` tool described above,
 and so enabled by dfeault), `MICROPY_PY_USSL` should be set to 1.
 
@@ -195,11 +226,15 @@ The STM32 version
 -----------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 The "stm32" port requires an ARM compiler, arm-none-eabi-gcc, and 
 associated
 =======
 The "stm32" port requires an ARM compiler, arm-none-eabi-gcc, and associated
 >>>>>>> a275cb0f487cd6517760271dc01d369c32600c63
+=======
+The "stm32" port requires an ARM compiler, arm-none-eabi-gcc, and associated
+>>>>>>> upstream/master
 bin-utils.  For those using Arch Linux, you need arm-none-eabi-binutils,
 arm-none-eabi-gcc and arm-none-eabi-newlib packages.  Otherwise, try here:
 https://launchpad.net/gcc-arm-embedded
@@ -231,6 +266,7 @@ Contributing
 MicroPython is an open-source project and welcomes contributions. To be
 productive, please be sure to follow the
 <<<<<<< HEAD
+<<<<<<< HEAD
 [Contributors' 
 Guidelines](https://github.com/micropython/micropython/wiki/ContributorGuidelines)
 and the [Code 
@@ -240,8 +276,13 @@ contributions
 should follow this license.
 
 =======
+=======
+>>>>>>> upstream/master
 [Contributors' Guidelines](https://github.com/micropython/micropython/wiki/ContributorGuidelines)
 and the [Code Conventions](https://github.com/micropython/micropython/blob/master/CODECONVENTIONS.md).
 Note that MicroPython is licenced under the MIT license, and all contributions
 should follow this license.
+<<<<<<< HEAD
 >>>>>>> a275cb0f487cd6517760271dc01d369c32600c63
+=======
+>>>>>>> upstream/master
