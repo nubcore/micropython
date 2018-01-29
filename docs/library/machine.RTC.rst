@@ -10,12 +10,18 @@ and time.
 Example usage::
 
     rtc = machine.RTC()
-    rtc.init((2014, 5, 1, 4, 13, 0, 0, 0))
-    print(rtc.now())
+    rtc.datetime((2018, 1, 28, 7, 16, 20, 0, 0))
+    print(rtc.datetime()
+
+    #Additionally you can create an event trigger and alarm
+    rtc.irq(trigger=rtc.ALARM0, wake=machine.DEEPSLEEP)
+    rtc.alarm(rtc.ALARM0, 10*60*1000)
 
 
 Constructors
 ------------
+
+TODO: Update this section to conform to current ESP8266 implementation
 
 .. class:: RTC(id=0, ...)
 
@@ -24,10 +30,12 @@ Constructors
 Methods
 -------
 
+TODO: Update this section to conform to current ESP8266 implementation
+
 .. method:: RTC.init(datetime)
 
    Initialise the RTC. Datetime is a tuple of the form:
-   
+
       ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
 
 .. method:: RTC.now()
